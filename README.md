@@ -94,12 +94,13 @@ magic commands only accept constant values or local environment variables as par
 
 #### Function code
 
-In the cell you'd like to become the handler, you can use one of two ways:
+In the cell you'd like to become the handler, you can use one of following two ways:
 
 - create a `def handler(context, event)` function (the traditional nuclio way)
-- or mark a cell with `%%nuclio handler` which means this cell is the handler function (the Jupyter way)
+or
+- mark a cell with `%%nuclio handler` which means this cell is the handler function (the Jupyter way)
 
-when using the 2nd approach we mark the return line using `# nuclio:return` at the end of it.
+When using the second approach, mark the return line using `# nuclio:return` at the end of it.
 
 #### Function build or deploy
 
