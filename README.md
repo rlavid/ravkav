@@ -1,7 +1,7 @@
 # Nuclio Function Automation for Python and Jupyter
 
-Python package for automatically generating and deploying [nuclio](https://github.com/nuclio/nuclio) serverless functions from code, archives or Jupyter notebooks.
-Providing a powerful mechanism for automating code and function generation, simple debugging, lifecycle management, and native integration into data-science tools.
+This is the Python package for automatically generating and deploying [nuclio](https://github.com/nuclio/nuclio) serverless functions from code, archives or Jupyter notebooks.
+It provides a powerful mechanism for automating code and function generation, simple debugging, lifecycle management, and native integration into data-science tools.
 
 #### The package provides the following features
 
@@ -12,16 +12,16 @@ Providing a powerful mechanism for automating code and function generation, simp
 
 #### What is nuclio?
 
-nuclio is a high performance serverless platform which runs over docker or kubernetes and automate the development, operation, and scaling of code (written in multiple supported languages).
-nuclio functions can be triggered via HTTP, popular messaging/streaming protocols, scheduled events, and in batch.
-nuclio can run in the cloud as a managed offering, or on any Kubernetes cluster (cloud, on-prem, or edge)<br>
+Nuclio is a high-performance serverless platform running over Docker or Kubernetes that automates the development, operation, and scaling of code written in multiple supported languages.
+Nuclio functions can be triggered via HTTP, popular messaging/streaming protocols, scheduled events, and in batch.
+Nuclio can also run in the cloud as a managed offering, or on any Kubernetes cluster (cloud, on-prem, or edge)<br>
 [read more about nuclio ...](https://github.com/nuclio/nuclio)
 
-nuclio and this package are an integral part of [Iguazio Data Science Platform](https://www.iguazio.com/), you can see many end to end usage examples and notebooks in [iguazio tutorial](https://github.com/v3io/tutorials) repo.
+Nuclio and this package are an integral part of [Iguazio Data Science Platform](https://www.iguazio.com/), you can see many end to end usage examples and notebooks in [iguazio tutorial](https://github.com/v3io/tutorials) repository.
 
 #### How does it work?
 
-nuclio take code + [function spec](https://nuclio.io/docs/latest/reference/function-configuration/function-configuration-reference/) + optional file artifacts and automatically convert them to auto-scaling services over Kubernetes.
+nuclio takes code + [function spec](https://nuclio.io/docs/latest/reference/function-configuration/function-configuration-reference/) + optional file artifacts and automatically convert them to auto-scaling services over Kubernetes.
 the artifacts can be provided as a YAML file (with embedded code), as Dockerfiles, or as archives (Git or Zip).
 function spec allow you to [define everything](https://nuclio.io/docs/latest/reference/function-configuration/function-configuration-reference/) from CPU/Mem/GPU requirements, package dependencies, environment variables, secrets, shared volumes, API gateway config, and more.<br>
 
