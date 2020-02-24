@@ -5,10 +5,10 @@ It provides a powerful mechanism for automating code and function generation, si
 
 #### The package provides the following features
 
-- Automatically convert code/files + dependencies (environment, packages configuration, data/files)<br> into nuclio function spec or archive
-- Automatically build and deploy nuclio functions (code, spec, or archive) onto a cluster
-- Provide native integration into [Jupyter](https://jupyter.org/) IDE (Menu and %magic commands)
-- Handle function and spec versioning and archiving against an external object storage (s3, http/s, git or iguazio)
+- Automatically convert code/files and their dependencies (environment, packages configuration, data/files)<br> into a nuclio function spec or archive.
+- Automatically build and deploy nuclio functions (code, spec, or archive) onto a cluster.
+- Provide native integration into [Jupyter](https://jupyter.org/) IDE (Menu and %magic commands).
+- Handle function and spec versioning and archiving against an external object storage (s3, HTTP/s, Git or Iguazio).
 
 #### What is nuclio?
 
@@ -17,7 +17,7 @@ Nuclio functions can be triggered via HTTP, popular messaging/streaming protocol
 Nuclio can also run in the cloud as a managed offering, or on any Kubernetes cluster (cloud, on-prem, or edge)/<br>
 [read more about nuclio ...](https://github.com/nuclio/nuclio)
 
-Nuclio and this package are an integral part of [Iguazio Data Science Platform](https://www.iguazio.com/), you can see many end to end usage examples and notebooks in [iguazio tutorial](https://github.com/v3io/tutorials) repository.
+Nuclio and this package are an integral part of the [Iguazio Data Science Platform](https://www.iguazio.com/). You can see many end-to-end usage examples and notebooks in the [iguazio tutorial](https://github.com/v3io/tutorials) repository.
 
 #### How does it work?
 
