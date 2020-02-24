@@ -8,31 +8,31 @@ It provides a powerful mechanism for automating code and function generation, si
 - Automatically convert code/files + dependencies (environment, packages configuration, data/files)<br> into nuclio function spec or archive
 - Automatically build and deploy nuclio functions (code, spec, or archive) onto a cluster
 - Provide native integration into [Jupyter](https://jupyter.org/) IDE (Menu and %magic commands)
-- Handle function+spec versioning and archiving against an external object storage (s3, http/s, git or iguazio)
+- Handle function and spec versioning and archiving against an external object storage (s3, http/s, git or iguazio)
 
 #### What is nuclio?
 
 Nuclio is a high-performance serverless platform running over Docker or Kubernetes that automates the development, operation, and scaling of code written in multiple supported languages.
 Nuclio functions can be triggered via HTTP, popular messaging/streaming protocols, scheduled events, and in batch.
-Nuclio can also run in the cloud as a managed offering, or on any Kubernetes cluster (cloud, on-prem, or edge)<br>
+Nuclio can also run in the cloud as a managed offering, or on any Kubernetes cluster (cloud, on-prem, or edge)/<br>
 [read more about nuclio ...](https://github.com/nuclio/nuclio)
 
 Nuclio and this package are an integral part of [Iguazio Data Science Platform](https://www.iguazio.com/), you can see many end to end usage examples and notebooks in [iguazio tutorial](https://github.com/v3io/tutorials) repository.
 
 #### How does it work?
 
-nuclio takes code + [function spec](https://nuclio.io/docs/latest/reference/function-configuration/function-configuration-reference/) + optional file artifacts and automatically convert them to auto-scaling services over Kubernetes.
-the artifacts can be provided as a YAML file (with embedded code), as Dockerfiles, or as archives (Git or Zip).
-function spec allow you to [define everything](https://nuclio.io/docs/latest/reference/function-configuration/function-configuration-reference/) from CPU/Mem/GPU requirements, package dependencies, environment variables, secrets, shared volumes, API gateway config, and more.<br>
+Nuclio takes code, [function specs](https://nuclio.io/docs/latest/reference/function-configuration/function-configuration-reference/) as well as optional file artifacts, and automatically converts them into auto-scaling services over Kubernetes.
+The nuclio artifacts can be provided as YAML files (with embedded code), as Docker files, or as archives (Git or Zip).
+A function spec allows you to [define everything](https://nuclio.io/docs/latest/reference/function-configuration/function-configuration-reference/) from CPU/Mem/GPU requirements, package dependencies, environment variables, secrets, shared volumes, API gateway config, and more.<br>
 
-this package is trying to simplify the configuration and deployment through more abstract APIs and `%nuclio` magic commands which eventually build the code + spec artifacts in YAML or Archive formats (archives are best used when additional files need to be packaged or for version control)
+This package simplifies the configuration and deployment using abstract APIs and the `%nuclio` magic command that will build the code and spec artifacts in YAML or Archive formats (archives are best used when additional files need to be packaged or for version control).
 
-the `%nuclio` magic commands are simple to use, but may be limited, if you want more programmability use the `build_file`, `deploy_file`, and `deploy_code` Python functions from your code or a notebook cell.
+The `%nuclio` magic command is simple to use, but may be limited. If you need more programmability use the `build_file`, `deploy_file`, and `deploy_code` Python functions from your code or a notebook cell instead.
 
 ## Usage
 
 - [Installing](#installing)
-- [Creating and debugging functions inside a notebook using `%nuclio` magic](#creating-and-debugging-functions-using-nuclio-magic)
+- [Creating and debugging functions inside a notebook using `%nuclio` magic command](#creating-and-debugging-functions-using-nuclio-magic)
 - [Nuclio code section markers](#nuclio-code-section-markers) (`# nuclio: <marker>`)
 
 ## Installing
@@ -48,20 +48,20 @@ Install in a Jupyter Notebook by running the following in a cell
 
 to access the library use `import nuclio`
 
-## Creating and debugging functions using `%nuclio` magic
+## Creating and debugging functions using `%nuclio` magic commands
 
-`%nuclio` magic commands and some comment notations (e.g. `# nuclio: ignore`) help us provide non-intrusive hints as to how we want to convert the notebook into a full function + spec.
-cells which we do not plan to include in the final function (e.g. prints, plots, debug code, etc.) are prefixed with `# nuclio: ignore`
-if we want settings such as environment variables and package installations to automatically appear in the fucntion spec we use the `env` or `cmd` commands and those will copy them self into the function spec.
+Using `%nuclio` magic commands with some comment notations (e.g. `# nuclio: ignore`) help us provide non-intrusive hints as to how we want to convert the notebook into a full function + spec.
+Cells which we do not plan to include in the final function (e.g., prints, plots, debug code, etc.) are prefixed with `# nuclio: ignore`
+If we want certain settings, such as environment variables and package installations, to automatically appear in the fucntion spec, we use the `env` or `cmd` commands and those will copy them self into the function spec.
 
-> Note: if we want to ignore many cells at the beginning of the notebook (e.g.  data exploration and model training) we can use `# nuclio: start` at the first relevant code cell instead of marking all the cells above with `# nuclio: ignore`.
+> Note: if we want to ignore several cells at the beginning of the notebook (e.g.,  data exploration and model training) we can use `# nuclio: start` at the first relevant code cell instead of marking each the cells above with `# nuclio: ignore`.
 
-after we finish writing the code we can simulate the code with the built-in nuclio `context` object
+After we finish writing the code, we can simulate the code using the built-in nuclio `context` object
 (see: debugging functions) and when we are done we can use the `export` command to generate the function YAML/archive or use `deploy` to automatically deploy the function on a nuclio/kubernetes cluster.
 
-we can use other commands like `show` to print out the generated function + spec, `config` to set various spec params (like cpu/mem/gpu requirements, triggers, etc.), and `mount` to auto-mount shared volumes into the function.<br>
+We can use other commands like `show` to print out the generated function + spec, `config` to set various spec params (like cpu/mem/gpu requirements, triggers, etc.), and `mount` to auto-mount shared volumes into the function.<br>
 
-for more details use the `%nuclio help` or `%nuclio help <command>`.
+For more details, see the `%nuclio help` or `%nuclio help <command>`.
 
 ### Example:
 
@@ -79,7 +79,7 @@ import nuclio
 
 #### Function spec/configuration
 
-the following sections set an environment variable, install desired package, and set some special configuration (e.g. set the base docker image used for the function).
+The following sections set an environment variable, install desired package, and set some special configuration (e.g. set the base docker image used for the function).
 note the environment variables and packages will be deployed in the notebook AND in the function, we can specify that we are interested in having them only locally (`-l`) or in nuclio spec (`-c`).
 we can use local environment variables in those commands with `${VAR_NAME}`, see `help` for details.
 >note: `%` is used for single line commands and `%%` means the command apply to the entire cell.
