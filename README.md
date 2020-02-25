@@ -1,4 +1,4 @@
-# Nuclio Function Automation for Python and Jupyter
+# Nuclio Function Automated Generation and Deployment for Python and Jupyter
 
 This is the Python package for automatically generating and deploying [nuclio](https://github.com/nuclio/nuclio) serverless functions from code, archives or Jupyter notebooks.
 It provides a powerful mechanism for automating code and function generation, simple debugging, lifecycle management, and native integration into data-science tools.
@@ -81,7 +81,7 @@ We start with, import `nucilo` package, this initialize the `%nuclio` magic comm
 import nuclio
 ```
 
-#### Function spec/configuration
+#### Function spec configuration
 
 The following sections set an environment variable, install desired package, and set some special configuration (e.g. set the base docker image used for the function).
 note the environment variables and packages will be deployed in the notebook AND in the function, we can specify that we are interested in having them only locally (`-l`) or in nuclio spec (`-c`).
@@ -108,7 +108,7 @@ When using the second approach, mark the return line using `# nuclio:return` at 
 
 #### Function build or deploy
 
-once we are done we use the `%nuclio deploy` command to build the function and run it on a real cluster, note the deploy command return a valid HTTP end-point which can be used to test/use our real function.
+Once we are done we use the `%nuclio deploy` command to build the function and run it on a real cluster, note the deploy command return a valid HTTP end-point which can be used to test/use our real function.
 
 deploy the code as nuclio function `nlp` under project `ai`:
 
