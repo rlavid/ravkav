@@ -40,10 +40,11 @@ Using this package includes the following main steps:
 ## Installing
 
 To install in ???, use
+
+```
     pip install  --upgrade nuclio-jupyter
-
+```
 To install in a Jupyter Notebook, run the following in a cell:
-
 ```
 # nuclio: ignore
 !pip install --upgrade nuclio-jupyter
