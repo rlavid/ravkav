@@ -30,10 +30,12 @@ This package simplifies the configuration and deployment using abstract APIs and
 The `%nuclio` magic command is simple to use, but may be limited. If you need more programmability, use the `build_file`, `deploy_file`, and `deploy_code` Python functions from your code or a notebook cell instead.
 
 ## Usage
+Using this package includes the following main steps:
 
 - [Installing](#installing)
 - [Creating and debugging functions inside a notebook using `%nuclio` magic command](#creating-and-debugging-functions-using-nuclio-magic-command)
 - [Nuclio code section markers](#nuclio-code-section-markers) (`# nuclio: <marker>`)
+- [Importing Nuclio](#Importing-Nuclio)
 
 ## Installing
 
