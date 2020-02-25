@@ -8,7 +8,7 @@ It provides a powerful mechanism for automating code and function generation, si
 - Automatically convert code/files and their dependencies (environment, packages configuration, data/files)<br> into a nuclio function spec or archive.
 - Automatically build and deploy nuclio functions (code, spec, or archive) onto a cluster.
 - Provide native integration into [Jupyter](https://jupyter.org/) IDE (Menu and %magic commands).
-- Handle function and spec versioning and archiving against an external object storage (s3, HTTP/s, Git or Iguazio).
+- Manage function spec versioning and archiving against an external object storage (s3, HTTP/S, Git or Iguazio).
 
 #### What is nuclio?
 
@@ -21,45 +21,49 @@ Nuclio and this package are an integral part of the [Iguazio Data Science Platfo
 
 #### How does it work?
 
-Nuclio takes code, [function specs](https://nuclio.io/docs/latest/reference/function-configuration/function-configuration-reference/) as well as optional file artifacts, and automatically converts them into auto-scaling services over Kubernetes.
-The nuclio artifacts can be provided as YAML files (with embedded code), as Docker files, or as archives (Git or Zip).
+Nuclio takes code, [function specs](https://nuclio.io/docs/latest/reference/function-configuration/function-configuration-reference/) as well as any associated file artifacts, and automatically converts them into auto-scaling services over Kubernetes.
+The nuclio artifacts can then be provided as YAML files (with embedded code), as Docker files, or as archives (Git or Zip).
 A function spec allows you to [define everything](https://nuclio.io/docs/latest/reference/function-configuration/function-configuration-reference/) from CPU/Mem/GPU requirements, package dependencies, environment variables, secrets, shared volumes, API gateway config, and more.<br>
 
 This package simplifies the configuration and deployment using abstract APIs and the `%nuclio` magic command that will build the code and spec artifacts in YAML or Archive formats (archives are best used when additional files need to be packaged or for version control).
 
-The `%nuclio` magic command is simple to use, but may be limited. If you need more programmability use the `build_file`, `deploy_file`, and `deploy_code` Python functions from your code or a notebook cell instead.
+The `%nuclio` magic command is simple to use, but may be limited. If you need more programmability, use the `build_file`, `deploy_file`, and `deploy_code` Python functions from your code or a notebook cell instead.
 
 ## Usage
 
 - [Installing](#installing)
-- [Creating and debugging functions inside a notebook using `%nuclio` magic command](#creating-and-debugging-functions-using-nuclio-magic)
+- [Creating and debugging functions inside a notebook using `%nuclio` magic command](#creating-and-debugging-functions-using-nuclio-magic-command)
 - [Nuclio code section markers](#nuclio-code-section-markers) (`# nuclio: <marker>`)
 
 ## Installing
 
     pip install  --upgrade nuclio-jupyter
 
-Install in a Jupyter Notebook by running the following in a cell
+To install in a Jupyter Notebook run the following in a cell:
 
 ```
 # nuclio: ignore
 !pip install --upgrade nuclio-jupyter
 ```
 
-to access the library use `import nuclio`
+To access the library use `import nuclio`
 
-## Creating and debugging functions using `%nuclio` magic commands
+## Creating and debugging functions using `%nuclio` magic command
 
-Using `%nuclio` magic commands with some comment notations (e.g. `# nuclio: ignore`) help us provide non-intrusive hints as to how we want to convert the notebook into a full function + spec.
-Cells which we do not plan to include in the final function (e.g., prints, plots, debug code, etc.) are prefixed with `# nuclio: ignore`
-If we want certain settings, such as environment variables and package installations, to automatically appear in the fucntion spec, we use the `env` or `cmd` commands and those will copy them self into the function spec.
+Using `%nuclio` magic commands with some comment notations (e.g. `# nuclio: ignore`) help you provide non-intrusive hints as to how you want to convert the notebook into a full function spec.
+Cells which you do not plan to include in the final function (e.g., prints, plots, debug code, etc.) are prefixed with `# nuclio: ignore`
+If you want specific settings, such as for environment variables and package installations, to automatically appear in the fucntion spec,  use the `env` or `cmd` commands and only those will be copied into the function spec.
 
-> Note: if we want to ignore several cells at the beginning of the notebook (e.g.,  data exploration and model training) we can use `# nuclio: start` at the first relevant code cell instead of marking each the cells above with `# nuclio: ignore`.
+> Note: if you want to ignore several cells at the beginning of the notebook (e.g.,  data exploration and model training), you can use `# nuclio: start` in the first relevant code cell instead of marking each cell with a `# nuclio: ignore`.
 
-After we finish writing the code, we can simulate the code using the built-in nuclio `context` object
-(see: debugging functions) and when we are done we can use the `export` command to generate the function YAML/archive or use `deploy` to automatically deploy the function on a nuclio/kubernetes cluster.
+After you finish writing the code, you can simulate the code using the built-in nuclio `context` object (see: debugging functions). 
+When the code is done and checked, you can use the `export` command to generate the function YAML/archive, or use `deploy` to automatically deploy the function on a nuclio/kubernetes cluster.
 
-We can use other commands like `show` to print out the generated function + spec, `config` to set various spec params (like cpu/mem/gpu requirements, triggers, etc.), and `mount` to auto-mount shared volumes into the function.<br>
+## Other commands
+You can use other commands such as: 
+- `show` to print out the generated function spec, 
+- `config` to set various spec params (such as cpu/mem/gpu requirements, triggers, etc.), and 
+- `mount` to auto-mount shared volumes into the function.<br>
 
 For more details, see the `%nuclio help` or `%nuclio help <command>`.
 
