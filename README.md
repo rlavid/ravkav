@@ -37,9 +37,10 @@ The `%nuclio` magic command is simple to use, but may be limited. If you need mo
 
 ## Installing
 
+To install in ???, use
     pip install  --upgrade nuclio-jupyter
 
-To install in a Jupyter Notebook run the following in a cell:
+To install in a Jupyter Notebook, run the following in a cell:
 
 ```
 # nuclio: ignore
@@ -50,7 +51,7 @@ To access the library use `import nuclio`
 
 ## Creating and debugging functions using `%nuclio` magic command
 
-Using `%nuclio` magic commands with some comment notations (e.g. `# nuclio: ignore`) help you provide non-intrusive hints as to how you want to convert the notebook into a full function spec.
+Using the `%nuclio` magic commands with some comment notations (e.g. `# nuclio: ignore`) help you provide non-intrusive hints as to how you want to convert the notebook into a full function spec.
 Cells which you do not plan to include in the final function (e.g., prints, plots, debug code, etc.) are prefixed with `# nuclio: ignore`
 If you want specific settings, such as for environment variables and package installations, to automatically appear in the fucntion spec,  use the `env` or `cmd` commands and only those will be copied into the function spec.
 
@@ -69,11 +70,12 @@ For more details, see the `%nuclio help` or `%nuclio help <command>`.
 
 ### Example:
 
-Can see the following example for configuring resources, writing and testing code, deploying the function, and testing the final function.
-note serverless functions have an entry point (`handler`) which is called by the run time engine and triggers.
-the handler carry two objects, a `context` (run-time objects like logger) and `event` (the body and other attributes delivered by the client or trigger).
+See the following for an example for configuring resources, writing and testing code, deploying the function, and testing the final function.
+**Note:** Serverless functions have an entry point (`handler`) which is called by the run time engine and triggers.
+The handler contains two objects, a `context` (run-time objects like logger) and an `event` (the body and other attributes delivered by the client or trigger).
 
-We start with, import `nucilo` package, this initialize the `%nuclio` magic commands and `context` object this section should not be copied to the function so we mark this cell with `# nuclio: ignore` (or we can use `# nuclio: start-code` or `# nuclio: end-code` to mark the code section in the notebook).
+## Importing Nuclio ##
+To begin, you need to import the `nucilo` package, this initializes the `%nuclio` magic commands and `context` object. As this section should not be copied to the function,  you must mark this cell with `# nuclio: ignore` (or alternatively, use `# nuclio: start-code` or `# nuclio: end-code` to mark the code section in the notebook).
 
 
 ```python
